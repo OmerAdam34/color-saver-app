@@ -14,33 +14,8 @@ function App() {
     },
     {
       id: 8,
-      color: "olove",
+      color: "yellow",
       colorCode: "#808000	",
-    },
-    {
-      id: 10,
-      color: "green",
-      colorCode: "#008000",
-    },
-    {
-      id: 12,
-      color: "teal",
-      colorCode: "#008080",
-    },
-    {
-      id: 13,
-      color: "navy",
-      colorCode: "#000080	",
-    },
-    {
-      id: 14,
-      color: "fuchsia",
-      colorCode: "#FF00FF",
-    },
-    {
-      id: 15,
-      color: "purple",
-      colorCode: "#800080",
     },
   ]);
 
@@ -53,12 +28,13 @@ function App() {
           event.preventDefault();
           const formData = new FormData(event.target);
           const formValues = Object.fromEntries(formData);
+
           setColorCards([
             ...colorCards,
             {
               id: formValues.colorCode,
               color: "black",
-              hexCode: formValues.colorCode,
+              colorCode: formValues.colorCode,
             },
           ]);
         }}
@@ -68,30 +44,23 @@ function App() {
         <button type="submit">Submit</button>
       </form>
 
-      {/* <button
-        onClick={() => {
-          setColorCards([...colorCards, { id: 16, colorCode: "#123123" }]);
-        }}
-      >
-        color
-      </button> */}
-
       <div>
         <ul>
           {colorCards.map((colorCard) => {
             return (
-              <li key={colorCard.hexCode}>
+              <li key={colorCard.colorCode}>
                 <div
                   onClick={() => {
                     navigator.clipboard.writeText(colorCard.colorCode);
                   }}
                   style={{
-                    width: "80px",
-                    height: "80px",
+                    width: "100px",
+                    height: "100px",
                     background: colorCard.colorCode,
                   }}
                 >
                   Name: {colorCard.color} <br /> HexCode {colorCard.colorCode}
+                  <button type="submit"> Delete</button>
                 </div>
               </li>
             );
